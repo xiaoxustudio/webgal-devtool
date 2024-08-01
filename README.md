@@ -11,6 +11,9 @@
 
 <h5 align="center"><img src="https://img.shields.io/badge/documentation-yes-brightgreen" alt="Documentation"> <img src="https://img.shields.io/github/license/xiaoxustudio/webgal-devtool" alt="github license"> <img src="https://img.shields.io/badge/language-webgal-brightgreen" alt="Language"></h5>
 
+
+一款用于调试WebGal游戏的浏览器devtools扩展。
+
 # 使用
 
 将本项目`clone`到本地目录
@@ -19,7 +22,8 @@
 git clone https://github.com/xiaoxustudio/webgal-devtool.git
 ```
 
-本项目使用`yarn`包管理工具
+本项目使用`yarn`包管理工具  
+
 如果您没安装yarn工具
 
 ```sh
@@ -30,13 +34,11 @@ npm install -g yarn #
 
 ```sh
 
-
-
 yarn # 安装依赖
 
-yarn dev
+yarn dev # 开发
 
-yarn build
+yarn build # 打包
 ```
 
 # WebGal官方链接
