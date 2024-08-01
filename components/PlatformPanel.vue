@@ -1,5 +1,5 @@
 <template>
-    <div class="flex w-full flex-col items-center justify-center">
+    <div class="flex w-full flex-col">
         <el-row>
             <el-col :span="24">
                 <el-text>当前执行到脚本行：{{ _sentence_number }}</el-text>
@@ -66,7 +66,7 @@
             <el-descriptions-item>
                 <template #default>
                     <div><el-text style="color: #333" :size="size">语句内容</el-text></div>
-                    <div class="w-10">
+                    <div  class="w-full">
                         <el-text :size="size_content">{{ item.script.content }}</el-text>
                     </div>
                 </template>
@@ -76,7 +76,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { wsData } from '@/utils/index';
+import { jump, wsData } from '@/utils';
 interface _Prop {
     data: Array<IRunPerform>;
 }
@@ -86,6 +86,7 @@ const prop = withDefaults(defineProps<_Prop>(), {
 const _sentence_number = ref(wsData.value.sceneMsg?.sentence ?? 0);
 watch([wsData], () => (_sentence_number.value = wsData.value.sceneMsg?.sentence));
 const handleChange = (_val: number) => {
+    jump(_val);
 };
 const size = '';
 const size_content = 'small';

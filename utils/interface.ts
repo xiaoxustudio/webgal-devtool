@@ -293,3 +293,15 @@ export enum fileType {
     vocal,
     video,
 }
+export interface IDebugMessage {
+    event: string;
+    data: {
+        command: DebugCommand;
+        sceneMsg: {
+            sentence: number;
+            scene: string;
+        };
+        message: string;
+        stageSyncMsg: any;
+    };
+}
