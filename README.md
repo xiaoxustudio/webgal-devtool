@@ -36,9 +36,14 @@ npm install -g yarn #
 
 yarn # 安装依赖
 
-yarn dev # 开发
+yarn dev # 开发打包
 
-yarn build # 打包
+yarn build # 构建打包
+
+yarn zip # 打包chrome
+
+yarn zip:firefox # 打包firefox
+
 ```
 
 # WebGal官方链接
