@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-full text-center">
         <el-progress :color="is_connect ? '#00FF00' : '#F57272'" type="dashboard" :percentage="100">
             <template #default>
                 <div class="flex flex-col">

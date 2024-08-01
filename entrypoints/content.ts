@@ -1,4 +1,6 @@
 export default defineContentScript({
-    matches: ['*://localhost/*'],
-    main() {},
+    matches: ['<all_urls>'],
+    main() {
+        console.log("running xuran")
+    },
 });

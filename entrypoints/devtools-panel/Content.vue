@@ -40,7 +40,10 @@ const init = () => {
         let data = JSON.parse(e.data);
         setData(data.data);
     };
-    socket.onclose = () => (wsData.value = {});
+    socket.onclose = () => {
+        wsData.value = {};
+        setSocket();
+    };
     return socket;
 };
 const createData = function (_wsData: Record<string, any>, deep = 1): Array<any> {

@@ -5,7 +5,7 @@ export let wsData: Ref<IWSS> = ref({});
 export let SocketObject: Ref<WebSocket | undefined> = ref();
 export let wsData_delay = ref<number>(Date.now());
 export const is_connect = computed(() => Object.keys(wsData.value).length == 4);
-export function setSocket(_d: WebSocket) {
+export function setSocket(_d?: WebSocket) {
     SocketObject.value = _d;
     wsData_delay.value = Date.now();
 }
