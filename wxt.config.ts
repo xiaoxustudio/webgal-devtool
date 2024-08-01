@@ -19,10 +19,11 @@ export default defineConfig({
         };
     },
     runner: {
-        startUrls: ['http://localhost:3001/games/XUI/'],
+        startUrls: [],
     },
     manifest: {
         permissions: ['tabs'],
-        description:"一款用于调试WebGal游戏的浏览器devtools扩展。 - Xuran"
+        description:"一款用于调试WebGal游戏的浏览器devtools扩展。 - Xuran",
+        version:"0.0.1",
     },
 });
