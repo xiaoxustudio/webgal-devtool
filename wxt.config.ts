@@ -23,5 +23,6 @@ export default defineConfig({
     },
     manifest: {
         permissions: ['tabs'],
+        description:"一款用于调试WebGal游戏的浏览器devtools扩展。 - Xuran"
     },
 });
