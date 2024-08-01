@@ -1,5 +1,4 @@
 export default defineContentScript({
-	matches: ["*://localhost/*"],
-	main() {
-	},
+    matches: ['*://localhost/*'],
+    main() {},
 });

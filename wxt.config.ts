@@ -18,7 +18,9 @@ export default defineConfig({
             },
         };
     },
-    runner: {},
+    runner: {
+        startUrls: ['http://localhost:3001/games/XUI/'],
+    },
     manifest: {
         permissions: ['tabs'],
     },

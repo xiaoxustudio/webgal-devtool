@@ -1,6 +1,6 @@
 <template>
     <el-row justify="space-between" class="w-full">
-        <el-col :span="24" class="font-bold">
+        <el-col :span="24">
             <el-card>
                 <template #header>
                     <el-text type="info">场景面板</el-text>
@@ -50,6 +50,7 @@
                 >
                     <template #default>
                         <div class="flex flex-col">
+                            <el-text>{{ Date.now() - wsData_delay }}ms </el-text>
                             <el-text>{{ is_connect ? '已连接' : '未连接' }} </el-text>
                         </div>
                     </template>
@@ -61,7 +62,7 @@
 </template>
 <script setup lang="ts">
 import { ElTreeV2 } from 'element-plus';
-import { axios, setData, setSocket, wsData } from '@/utils';
+import { axios, setData, setSocket, wsData, wsData_delay } from '@/utils';
 import PlatformPanel from '@/components/PlatformPanel.vue';
 const port: string = '80';
 const manifest = await browser.windows.getCurrent({ populate: true });

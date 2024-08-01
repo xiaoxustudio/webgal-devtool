@@ -1,8 +1,16 @@
 <template>
-    <div class="flex w-full items-center justify-center">
+    <div class="flex w-full flex-col items-center justify-center">
+        <el-row>
+            <el-col :span="24">
+                <el-text>当前执行到脚本行：{{ _sentence_number }}</el-text>
+            </el-col>
+            <el-col :span="24">
+                <el-input-number v-model="_sentence_number" @change="handleChange" />
+            </el-col>
+        </el-row>
         <el-descriptions
             :column="3"
-            :title="`演出 ${index}`"
+            :title="`演出 ${index + 1}`"
             :key="index"
             v-for="(item, index) in prop.data"
         >
@@ -37,7 +45,11 @@
                 <template #default>
                     <div><el-text style="color: #333" :size="size">演出脚本</el-text></div>
                     <div>
-                        <el-text :size="size_content">{{ item.script.command }}</el-text>
+                        <el-text :size="size_content"
+                            >{{ item.script.command }}({{
+                                transitionCommand(item.script.command)
+                            }})</el-text
+                        >
                     </div>
                 </template>
                 <template #label> </template>
@@ -64,13 +76,18 @@
     </div>
 </template>
 <script setup lang="ts">
+import { wsData } from '@/utils/index';
 interface _Prop {
     data: Array<IRunPerform>;
 }
 const prop = withDefaults(defineProps<_Prop>(), {
     data: () => [] as IRunPerform[],
 });
-const size = 'medium';
+const _sentence_number = ref(wsData.value.sceneMsg?.sentence ?? 0);
+watch([wsData], () => (_sentence_number.value = wsData.value.sceneMsg?.sentence));
+const handleChange = (_val: number) => {
+};
+const size = '';
 const size_content = 'small';
 </script>
 <style scope lang="scss"></style>
