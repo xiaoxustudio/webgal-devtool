@@ -1,4 +1,7 @@
 export default defineBackground(() => {
-    // console.log("Hello background!", { id: browser.runtime.id });
-    console.log('webgal-devtool running!!!');
+    browser.runtime.onInstalled.addListener(({ reason }) => {
+        if (reason === 'install') {
+            browser.storage.local.set({ installDate: Date.now() });
+        }
+    });
 });

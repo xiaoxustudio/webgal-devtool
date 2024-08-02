@@ -5,21 +5,40 @@
             <SceneProp :data="Data" :props="props" :height="500"></SceneProp>
         </el-col>
         <el-col :span="8"></el-col>
-        <el-col :span="8"><ConnectPanel></ConnectPanel></el-col>
+        <el-col :span="8">
+            <KeepAlive>
+                <ConnectPanel></ConnectPanel>
+            </KeepAlive>
+        </el-col>
         <el-col :span="8"></el-col>
     </el-row>
 </template>
 <script setup lang="ts">
-import { setData, setSocket, wsData, is_connect } from '@/utils';
+import {
+    setData,
+    setSocket,
+    wsData,
+    is_connect,
+    syncfc,
+    GameNetWorkConfig,
+    UpdateGetGameConfig,
+} from '@/utils';
 import SceneProp from './SceneProp.vue';
 import ConnectPanel from './ConnectPanel.vue';
 import ScenePanel from './ScenePanel.vue';
-const port: string = '80';
 const manifest = await browser.windows.getCurrent({ populate: true });
 const _current = manifest.tabs!.find((val) => val.active)!;
 const protocol = _current.url?.substring(0, _current.url?.indexOf('//'));
-const loc = _current.url?.match(/\/\/([^/]*)\//)![1];
-const init = () => {
+const port = _current.url?.match(/(?<!http|https):(.*?)\//)![1];
+const loc = _current.url?.match(/\/\/([^/]*):/)![1];
+GameNetWorkConfig.value = {
+    protocol,
+    port,
+    host: loc,
+    url: `${loc}:${port}`,
+};
+const init = async () => {
+    if (SocketObject.value?.readyState) return SocketObject.value;
     let defaultPort = '';
     if (port && port !== '80' && port !== '443') {
         defaultPort = `:${port}`;
@@ -31,10 +50,10 @@ const init = () => {
     if (protocol === 'https:') {
         wsUrl = `wss://${loc}${defaultPort}/api/webgalsync`;
     }
-
     const socket = new WebSocket(wsUrl);
     socket.onopen = () => {
-        socket.send('已建立连接');
+        console.log(`连接到：${wsUrl}`);
+        syncfc();
     };
     socket.onmessage = (e) => {
         let data = JSON.parse(e.data);
@@ -43,7 +62,14 @@ const init = () => {
     socket.onclose = () => {
         wsData.value = {};
         setSocket();
+        console.log(`连接${wsUrl}出错`);
     };
+    socket.onerror = () => {
+        wsData.value = {};
+        setSocket();
+        console.log(`连接${wsUrl}出错`);
+    };
+    await UpdateGetGameConfig();
     return socket;
 };
 const createData = function (_wsData: Record<string, any>, deep = 1): Array<any> {
@@ -72,13 +98,8 @@ const props = {
     label: 'label',
     children: 'children',
 };
-setSocket(init()!);
-onMounted(() => {
-    // axios
-    // 	.get(`${protocol}//${loc}/games/XUI/game/scene/start.txt`)
-    // 	.then((data) => {
-    // 		console.log(data.data);
-    // 	});
+onMounted(async () => {
+    setSocket(await init());
 });
 </script>
 <style scope lang="scss"></style>

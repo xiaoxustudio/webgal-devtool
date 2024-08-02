@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Content from './Content.vue';
+import { RouterView } from 'vue-router';
 import Header from '@/components/Header.vue';
 </script>
 
@@ -7,7 +7,11 @@ import Header from '@/components/Header.vue';
     <Suspense>
         <div>
             <Header></Header>
-            <Content />
+            <RouterView :key="Date.now() + Math.random()" v-slot="{ Component }">
+                <KeepAlive>
+                    <component :is="Component"></component>
+                </KeepAlive>
+            </RouterView>
         </div>
     </Suspense>
 </template>

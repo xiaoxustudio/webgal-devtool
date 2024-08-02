@@ -305,3 +305,18 @@ export interface IDebugMessage {
         stageSyncMsg: any;
     };
 }
+export interface IConfig {
+    port?: string;
+    url?: string;
+    host?: string;
+    protocol?: string;
+}
+
+export interface IGameConfig {
+    Game_name?: string;
+    Game_key?: string;
+    Title_img?: string;
+    Title_bgm?: string;
+    Textbox_theme?: string;
+    [key: string]: string | undefined;
+}
