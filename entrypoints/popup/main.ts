@@ -6,3 +6,4 @@ import '@/styles/tailwind.css';
 const app = createApp(App);
 app.use(ElementPlus);
 app.mount('#app');
+browser.action.setIcon({ path: '@/icon/no.png' });

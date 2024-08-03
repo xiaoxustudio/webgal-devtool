@@ -57,6 +57,7 @@ const init = async () => {
     };
     socket.onmessage = (e) => {
         let data = JSON.parse(e.data);
+        if (data.data?.self) return;
         setData(data.data);
     };
     socket.onclose = () => {

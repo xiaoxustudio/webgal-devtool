@@ -4,4 +4,5 @@ export default defineBackground(() => {
             browser.storage.local.set({ installDate: Date.now() });
         }
     });
+    console.log('WebGal DevTool Start !');
 });

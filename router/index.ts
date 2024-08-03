@@ -14,6 +14,11 @@ const routes: RouteRecordRaw[] = [
         name: 'gameconfig',
         component: () => import('@/entrypoints/devtools-panel/GameConfig/index.vue'),
     },
+    {
+        path: '/variable',
+        name: 'variable',
+        component: () => import('@/entrypoints/devtools-panel/VariablePanel/index.vue'),
+    },
 ];
 const router = createRouter({
     history: createWebHashHistory(import.meta.url),

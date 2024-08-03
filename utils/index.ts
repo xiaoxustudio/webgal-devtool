@@ -38,8 +38,9 @@ export function jump(_val: number) {
                     scene: wsData.value.sceneMsg?.scene,
                     sentence: _val,
                 }, // @ts-ignore
-                stageSyncMsg: {},
-                message: '徐然',
+                stageSyncMsg: wsData.value.stageSyncMsg,
+                message: 'exp',
+                self: true,
             },
         };
         SocketObject.value.send(JSON.stringify(msg));
@@ -53,10 +54,11 @@ export function exec_cmd(e: string) {
                 command: DebugCommand.EXE_COMMAND,
                 sceneMsg: {
                     scene: wsData.value.sceneMsg?.scene,
-                    sentence: wsData.value.sceneMsg?.sentence,
+                    sentence: 1,
                 },
                 stageSyncMsg: {},
                 message: e,
+                self: true,
             },
         };
         SocketObject.value.send(JSON.stringify(msg));
@@ -74,6 +76,7 @@ export function syncfc() {
                 },
                 stageSyncMsg: wsData.value.stageSyncMsg,
                 message: 'sync',
+                self: true,
             },
         };
         SocketObject.value.send(JSON.stringify(message));

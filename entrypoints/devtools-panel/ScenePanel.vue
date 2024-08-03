@@ -12,7 +12,7 @@
             >
             <PlatformPanel :data="wsData.stageSyncMsg?.PerformList"></PlatformPanel>
         </div>
-        <template #footer>演出总计：{{ wsData.stageSyncMsg?.PerformList.length ?? 0 }}</template>
+        <template #footer>演出总计：{{ wsData.stageSyncMsg?.PerformList?.length ?? 0 }}</template>
     </el-card>
 </template>
 <script setup lang="ts">

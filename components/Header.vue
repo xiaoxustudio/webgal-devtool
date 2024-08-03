@@ -1,28 +1,13 @@
 <template>
-    <el-menu default-active="1" mode="horizontal" :ellipsis="false">
+    <el-menu class="h-10 mb-4" default-active="/home" mode="horizontal" :ellipsis="false" router>
         <div class="flex items-center justify-center px-2">
-            <el-avatar :size="32" shape="square" src="icon.png" />
+            <el-avatar :size="32" shape="square" :src="is_connect ? 'icon.png' : 'no.png'" />
         </div>
         <div class="flex-grow" />
-        <el-menu-item index="1"
-            ><RouterLink
-                :to="{
-                    path: '/home',
-                }"
-                >首页</RouterLink
-            ></el-menu-item
-        >
-        <el-menu-item index="2"
-            ><RouterLink
-                :to="{
-                    path: '/gameconfig',
-                }"
-                >配置</RouterLink
-            ></el-menu-item
-        >
+        <el-menu-item index="/home" v-if="is_connect">首页</el-menu-item>
+        <el-menu-item index="/gameconfig" v-if="is_connect">配置</el-menu-item>
+        <el-menu-item index="/variable" v-if="is_connect">变量</el-menu-item>
     </el-menu>
 </template>
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-</script>
+<script setup lang="ts"></script>
 <style scope lang="scss"></style>

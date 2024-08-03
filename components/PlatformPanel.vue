@@ -2,10 +2,12 @@
     <div class="flex w-full flex-col">
         <el-row>
             <el-col :span="24">
-                <el-text>当前执行到脚本行：{{ _sentence_number }}</el-text>
-            </el-col>
-            <el-col :span="24">
-                <el-input-number v-model="_sentence_number" @change="handleChange" />
+                <el-text
+                    >当前执行到脚本行：<el-input-number
+                        size="small"
+                        v-model="_sentence_number"
+                        @change="handleChange"
+                /></el-text>
             </el-col>
         </el-row>
         <el-descriptions
@@ -66,7 +68,7 @@
             <el-descriptions-item>
                 <template #default>
                     <div><el-text style="color: #333" :size="size">语句内容</el-text></div>
-                    <div  class="w-full">
+                    <div class="w-full">
                         <el-text :size="size_content">{{ item.script.content }}</el-text>
                     </div>
                 </template>

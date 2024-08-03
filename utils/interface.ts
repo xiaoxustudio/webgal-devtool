@@ -303,6 +303,7 @@ export interface IDebugMessage {
         };
         message: string;
         stageSyncMsg: any;
+        self: boolean; // 是否是自己发送的消息
     };
 }
 export interface IConfig {
