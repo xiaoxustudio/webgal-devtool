@@ -1,5 +1,5 @@
 <template>
-    <el-menu class="h-10 mb-4" default-active="/home" mode="horizontal" :ellipsis="false" router>
+    <el-menu class="mb-4 h-10" default-active="/home" mode="horizontal" :ellipsis="false" router>
         <div class="flex items-center justify-center px-2">
             <el-avatar :size="32" shape="square" :src="is_connect ? 'icon.png' : 'no.png'" />
         </div>

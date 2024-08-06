@@ -19,7 +19,7 @@ export default defineConfig({
         };
     },
     runner: {
-        startUrls: ['http://localhost:3001/games/XUI/'],
+        startUrls: ['http://localhost:3001/games/XUI/', 'https://xiaoxustudio.top'],
     },
     manifest: {
         permissions: ['tabs', 'storage'],

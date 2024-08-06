@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { IGameConfig } from './interface';
 export * from './interface';
 type IWSS = Partial<IWS>;
@@ -7,6 +7,18 @@ export let SocketObject: Ref<WebSocket | undefined> = ref();
 export let wsData_delay = ref<number>(Date.now());
 export let GameNetWorkConfig = ref<IConfig>({});
 export let GameConfig = ref<IGameConfig>({});
+export const _check_webgal_arr = [
+    '#Title_enter_page',
+    '#Title_white_container',
+    '#Title_white_container',
+    '#Title_enter_text',
+    '#panic-overlay',
+    '#ebg',
+];
+
+export function callCheckWebGal(_document: Document) {
+    return _check_webgal_arr.every((_val) => _document.querySelector(_val) instanceof HTMLElement);
+}
 export const is_connect = computed(() => Object.keys(wsData.value).length == 4);
 // 获取全部tab
 export async function getAllTabs() {
