@@ -7,6 +7,7 @@ export default defineContentScript({
                 type: 'check',
             });
         });
+
         browser.runtime.onMessage.addListener(async (message: any) => {
             // 检测是否为webgal应用
             switch (message?.type) {

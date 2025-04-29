@@ -19,18 +19,12 @@ export default defineConfig({
         };
     },
     runner: {
-        startUrls: [],
+        startUrls: ['http://localhost:3001/games/XUI/'],
     },
     manifest: {
-        permissions: ['tabs', 'storage'],
+        permissions: ['tabs', 'storage', 'activeTab', 'scripting'],
         description: '一款用于调试WebGal游戏的浏览器devtools扩展。 - Xuran',
         version: '0.0.1',
-        content_scripts: [
-            {
-                matches: ['<all_urls>'],
-                js: ['./content-scripts/content.js'],
-                all_frames: true,
-            },
-        ],
+        host_permissions: ['<all_urls>'],
     },
 });

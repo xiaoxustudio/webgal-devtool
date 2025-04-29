@@ -10,4 +10,8 @@
     </el-menu>
 </template>
 <script setup lang="ts"></script>
-<style scope lang="scss"></style>
+<style scope lang="scss">
+.el-menu--horizontal.el-menu{
+    border-bottom:none;
+    margin-bottom: 0;
+}</style>

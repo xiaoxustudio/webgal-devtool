@@ -4,6 +4,13 @@ export default defineBackground(() => {
             browser.storage.local.set({ installDate: Date.now() });
         }
     });
+    browser.tabs.query({}).then((_val) => {
+        const _current = _val.filter((_val) => _val.active)[0];
+        browser.runtime.sendMessage({
+            tabId: _current.id,
+            type: 'check',
+        });
+    });
     async function handleMessage(request: any, sender: any, sendResponse: any) {
         let message: Record<string, any> = request;
         const allTabs = await browser.tabs.query({});
